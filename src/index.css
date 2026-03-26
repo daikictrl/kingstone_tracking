@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #0A1F44;
+  --color-brand-orange: #FF6B35;
+  --color-brand-light: #F3F4F6;
+}
+
+/* Leaflet map container */
+.leaflet-container {
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+/* Toast slide-in animation */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
