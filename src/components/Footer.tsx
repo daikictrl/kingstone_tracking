@@ -51,7 +51,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-gray-300 text-[13px]">
-            Copyright &copy; 2025 Prime Deliveries. Developed by <span className="font-bold text-white">Joseph Pro</span>
+            Copyright &copy; 2026 Prime Deliveries.
           </p>
         </div>
       </div>
