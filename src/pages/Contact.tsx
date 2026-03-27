@@ -94,8 +94,8 @@ export default function Contact() {
                   <div>
                     <h3 className="text-xl font-bold text-brand-blue mb-2">Email</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      General Inquiries: info@logicorp.com<br />
-                      Support: support@logicorp.com
+                      General Inquiries: info@updeliv.com<br />
+                      Support: support@updeliv.com
                     </p>
                   </div>
                 </div>
