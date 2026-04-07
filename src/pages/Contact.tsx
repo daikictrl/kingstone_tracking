@@ -81,8 +81,8 @@ export default function Contact() {
                   <div>
                     <h3 className="text-xl font-bold text-brand-blue mb-2">Phone</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Main: +1 (555) 123-4567<br />
-                      Support: +1 (555) 987-6543
+                      Main: +1 (517) 280-2134<br />
+                      Support: +1 (517) 232-4753
                     </p>
                   </div>
                 </div>
