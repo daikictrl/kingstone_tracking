@@ -117,7 +117,7 @@ export default function Contact() {
                     <h3 className="text-xl font-bold text-brand-blue mb-2">
                       Email
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-600 leading-relaxed break-all">
                       General Inquiries: supportusprimedeliveries@gmail.com
                       <br />
                       Support: operationsusprimedeliveries@gmail.com
@@ -128,7 +128,7 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white p-10 rounded-xl shadow-lg border border-gray-100">
+            <div className="bg-white p-6 sm:p-10 rounded-xl shadow-lg border border-gray-100">
               <h3 className="text-2xl font-bold text-brand-blue mb-8">
                 Send us a Message
               </h3>
