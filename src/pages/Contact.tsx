@@ -1,35 +1,47 @@
-import { Mail, Phone, MapPin, Send, Home } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Send, Home } from "lucide-react";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
+const SUPPORT_EMAIL = "supportusprimedeliveries@gmail.com";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const openMailClient = () => {
+    const subject = encodeURIComponent("Website Contact Form Submission");
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+    );
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  const handleSuccess = () => {
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => setIsSuccess(false), 5000);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+
+    openMailClient();
+    handleSuccess();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -51,51 +63,64 @@ export default function Contact() {
       <section className="py-24 bg-brand-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-brand-blue mb-8">Get in Touch</h2>
+              <h2 className="text-3xl font-bold text-brand-blue mb-8">
+                Get in Touch
+              </h2>
               <p className="text-gray-600 text-lg mb-12 leading-relaxed">
-                Whether you're looking for a comprehensive supply chain solution or simply need to track a single shipment, we're here to assist you every step of the way.
+                Whether you're looking for a comprehensive supply chain solution
+                or simply need to track a single shipment, we're here to assist
+                you every step of the way.
               </p>
-              
+
               <div className="space-y-8">
                 <div className="flex items-start gap-6">
                   <div className="bg-white p-4 rounded-full shadow-sm">
                     <MapPin className="h-8 w-8 text-brand-orange" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-brand-blue mb-2">Global Headquarters</h3>
+                    <h3 className="text-xl font-bold text-brand-blue mb-2">
+                      Global Headquarters
+                    </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      123 Logistics Way, Suite 400<br />
-                      New York, NY 10001<br />
+                      123 Logistics Way, Suite 400
+                      <br />
+                      New York, NY 10001
+                      <br />
                       United States
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-6">
                   <div className="bg-white p-4 rounded-full shadow-sm">
                     <Phone className="h-8 w-8 text-brand-orange" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-brand-blue mb-2">Phone</h3>
+                    <h3 className="text-xl font-bold text-brand-blue mb-2">
+                      Phone
+                    </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Main: +1 (517) 280-2134<br />
+                      Main: +1 (517) 280-2134
+                      <br />
                       Support: +1 (517) 232-4753
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start gap-6">
                   <div className="bg-white p-4 rounded-full shadow-sm">
                     <Mail className="h-8 w-8 text-brand-orange" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-brand-blue mb-2">Email</h3>
+                    <h3 className="text-xl font-bold text-brand-blue mb-2">
+                      Email
+                    </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      General Inquiries: info@updeliv.com<br />
-                      Support: support@updeliv.com
+                      General Inquiries: supportusprimedeliveries@gmail.com
+                      <br />
+                      Support: operationsusprimedeliveries@gmail.com
                     </p>
                   </div>
                 </div>
@@ -104,20 +129,30 @@ export default function Contact() {
 
             {/* Contact Form */}
             <div className="bg-white p-10 rounded-xl shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-brand-blue mb-8">Send us a Message</h3>
-              
+              <h3 className="text-2xl font-bold text-brand-blue mb-8">
+                Send us a Message
+              </h3>
+
               {isSuccess ? (
                 <div className="bg-green-50 border border-green-200 text-green-800 p-6 rounded-lg text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Send className="h-8 w-8 text-green-600" />
                   </div>
-                  <h4 className="text-xl font-bold mb-2">Message Sent Successfully!</h4>
-                  <p>Thank you for reaching out. Our team will get back to you shortly.</p>
+                  <h4 className="text-xl font-bold mb-2">
+                    Message Ready in Your Email App
+                  </h4>
+                  <p>
+                    Your default email client should open with the message ready
+                    to send.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Full Name
                     </label>
                     <input
@@ -131,9 +166,12 @@ export default function Contact() {
                       placeholder="John Doe"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Email Address
                     </label>
                     <input
@@ -147,9 +185,12 @@ export default function Contact() {
                       placeholder="john@example.com"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Message
                     </label>
                     <textarea
@@ -163,7 +204,7 @@ export default function Contact() {
                       placeholder="How can we help you?"
                     ></textarea>
                   </div>
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
