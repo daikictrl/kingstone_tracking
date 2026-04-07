@@ -73,7 +73,7 @@ export default function Navbar() {
               <Globe className="h-8 w-8" strokeWidth={1.5} />
               <Plane className="h-4 w-4 absolute -top-1 -right-1 transform rotate-45 fill-current" />
             </div>
-            <span className={`font-bold text-sm tracking-wider transition-colors duration-300 ${isScrolled ? 'text-[#003380]' : 'text-white'}`}>Diane Dollar</span>
+            <span className={`font-bold text-sm tracking-wider transition-colors duration-300 ${isScrolled ? 'text-[#003380]' : 'text-white'}`}>Us Prime Deliveries</span>
           </Link>
           
           <button

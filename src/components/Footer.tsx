@@ -21,8 +21,8 @@ export default function Footer() {
             <div className="pt-1">
               <h3 className="text-2xl font-bold mb-5 tracking-wide">CONTACT</h3>
               <div className="space-y-3 mb-6">
-                <p className="text-gray-100 text-[15px]">support@updeliv.com</p>
-                <p className="text-gray-100 text-[15px]">delivery@updeliv.com</p>
+                <p className="text-gray-100 text-[15px]">supportusprimedeliveries@gmail.com</p>
+                <p className="text-gray-100 text-[15px]">operationsusprimedeliveries@gmail.com</p>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-gray-300 text-[13px]">
-            Copyright &copy; 2026 Prime Deliveries.
+            Copyright &copy; 2026 Us Prime Deliveries.
           </p>
         </div>
       </div>
