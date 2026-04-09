@@ -28,7 +28,7 @@ export async function geocodeLocation(
   try {
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'DianeDollarLogistics/1.0',
+        'User-Agent': 'UsPrimeDelivery/1.0',
       },
     });
 
@@ -55,3 +55,4 @@ export async function geocodeLocation(
     throw error;
   }
 }
+

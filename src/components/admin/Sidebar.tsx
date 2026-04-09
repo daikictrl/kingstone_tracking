@@ -50,7 +50,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               <Plane className="h-4 w-4 absolute -top-1 -right-1 transform rotate-45 fill-current" />
             </div>
             <div>
-              <span className="font-bold text-sm tracking-wider block">Diane Dollar</span>
+              <span className="font-bold text-sm tracking-wider block">Us Prime Delivery</span>
               <span className="text-[10px] text-gray-400 tracking-widest uppercase">Admin Panel</span>
             </div>
           </Link>
@@ -117,3 +117,4 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     </>
   );
 }
+

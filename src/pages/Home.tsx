@@ -274,13 +274,13 @@ export default function Home() {
             
             <div>
               <div className="inline-block px-4 py-2 bg-blue-50 rounded-full text-[#003380] font-bold tracking-wider text-sm mb-6">
-                ABOUT DIANE DOLLAR
+                ABOUT Us Prime Delivery
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-blue mb-6 leading-tight">
                 Delivering Excellence Across Borders
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Diane Dollar is a premier global logistics provider, offering end-to-end supply chain solutions. With a vast network of partners and state-of-the-art tracking technology, we ensure your cargo is handled with the utmost care.
+                Us Prime Delivery is a premier global logistics provider, offering end-to-end supply chain solutions. With a vast network of partners and state-of-the-art tracking technology, we ensure your cargo is handled with the utmost care.
               </p>
               <p className="text-gray-600 text-lg mb-10 leading-relaxed">
                 Our commitment to reliability, transparency, and customer satisfaction has made us the trusted partner for thousands of businesses worldwide.
@@ -412,3 +412,4 @@ export default function Home() {
     </div>
   );
 }
+
