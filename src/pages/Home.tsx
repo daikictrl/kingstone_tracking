@@ -25,8 +25,7 @@ export default function Home() {
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
              US Prime Delivery  <br />
-              <span className="text-brand-orange">Cargo
-Compan</span>
+              <span className="text-brand-orange">Cargo Company</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl leading-relaxed">
               Global supply chain management and freight forwarding services tailored to your business needs. We deliver on time, every time, anywhere in the world.
