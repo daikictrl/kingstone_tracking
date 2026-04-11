@@ -10,7 +10,11 @@ interface ShipmentResult {
   id: string;
   tracking_id: string;
   sender_name: string;
+  sender_email: string | null;
+  sender_phone: string | null;
   receiver_name: string;
+  receiver_email: string | null;
+  receiver_phone: string | null;
   weight: number;
   transport_type: string;
   status: string;
@@ -527,6 +531,12 @@ export default function TrackShipment() {
                     <div>
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Sender</p>
                       <p className="text-gray-900 font-semibold text-sm">{result.sender_name}</p>
+                      {result.sender_email?.trim() && (
+                        <a href={`mailto:${result.sender_email}`} className="text-xs text-brand-orange hover:underline break-all">{result.sender_email}</a>
+                      )}
+                      {result.sender_phone?.trim() && (
+                        <a href={`tel:${result.sender_phone}`} className="block text-xs text-gray-500 hover:underline mt-0.5">{result.sender_phone}</a>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -536,6 +546,12 @@ export default function TrackShipment() {
                     <div>
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Receiver</p>
                       <p className="text-gray-900 font-semibold text-sm">{result.receiver_name}</p>
+                      {result.receiver_email?.trim() && (
+                        <a href={`mailto:${result.receiver_email}`} className="text-xs text-brand-orange hover:underline break-all">{result.receiver_email}</a>
+                      )}
+                      {result.receiver_phone?.trim() && (
+                        <a href={`tel:${result.receiver_phone}`} className="block text-xs text-gray-500 hover:underline mt-0.5">{result.receiver_phone}</a>
+                      )}
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

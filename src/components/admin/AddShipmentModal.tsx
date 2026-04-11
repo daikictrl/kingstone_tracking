@@ -13,11 +13,16 @@ interface AddShipmentModalProps {
 export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShipmentModalProps) {
   const [loading, setLoading] = useState(false);
   const [geoError, setGeoError] = useState('');
+  const [emailErrors, setEmailErrors] = useState({ sender_email: '', receiver_email: '' });
   const { showToast } = useToast();
 
   const [form, setForm] = useState({
     sender_name: '',
+    sender_email: '',
+    sender_phone: '',
     receiver_name: '',
+    receiver_email: '',
+    receiver_phone: '',
     weight: '',
     transport_type: 'Air',
     status: 'Pending',
@@ -32,13 +37,27 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
   useEffect(() => {
     if (!isOpen) {
       setForm({
-        sender_name: '', receiver_name: '', weight: '', transport_type: 'Air',
+        sender_name: '', sender_email: '', sender_phone: '',
+        receiver_name: '', receiver_email: '', receiver_phone: '',
+        weight: '', transport_type: 'Air',
         status: 'Pending', origin_city: '', origin_country: '', destination_city: '',
         destination_country: '', current_city: '', current_country: '',
       });
       setGeoError('');
+      setEmailErrors({ sender_email: '', receiver_email: '' });
     }
   }, [isOpen]);
+
+  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+  const handleEmailBlur = (field: 'sender_email' | 'receiver_email') => {
+    const val = form[field].trim();
+    if (val && !isValidEmail(val)) {
+      setEmailErrors(prev => ({ ...prev, [field]: 'Please enter a valid email address.' }));
+    } else {
+      setEmailErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -69,7 +88,11 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
       const { error: insertError } = await supabase.from('shipments').insert({
         tracking_id: trackingData,
         sender_name: form.sender_name,
+        sender_email: form.sender_email.trim() || null,
+        sender_phone: form.sender_phone.trim() || null,
         receiver_name: form.receiver_name,
+        receiver_email: form.receiver_email.trim() || null,
+        receiver_phone: form.receiver_phone.trim() || null,
         weight: form.weight ? parseFloat(form.weight) : null,
         transport_type: form.transport_type,
         status: form.status,
@@ -115,17 +138,51 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
-          {/* Sender / Receiver */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Sender Name</label>
-              <input name="sender_name" value={form.sender_name} onChange={handleChange} required
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+          {/* Sender Group */}
+          <div>
+            <p className="text-sm font-bold text-[#0A1F44] mb-2 uppercase tracking-wider">Sender</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Sender Name</label>
+                <input name="sender_name" value={form.sender_name} onChange={handleChange} required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Sender Email <span className="text-gray-400 font-normal">(optional)</span></label>
+                <input name="sender_email" type="email" value={form.sender_email} onChange={handleChange}
+                  onBlur={() => handleEmailBlur('sender_email')}
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors ${emailErrors.sender_email ? 'border-red-400' : 'border-gray-300'}`} />
+                {emailErrors.sender_email && <p className="text-red-500 text-xs mt-1">{emailErrors.sender_email}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Sender Phone <span className="text-gray-400 font-normal">(optional)</span></label>
+                <input name="sender_phone" type="tel" value={form.sender_phone} onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Name</label>
-              <input name="receiver_name" value={form.receiver_name} onChange={handleChange} required
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+          </div>
+
+          {/* Receiver Group */}
+          <div>
+            <p className="text-sm font-bold text-[#0A1F44] mb-2 uppercase tracking-wider">Receiver</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Name</label>
+                <input name="receiver_name" value={form.receiver_name} onChange={handleChange} required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Email <span className="text-gray-400 font-normal">(optional)</span></label>
+                <input name="receiver_email" type="email" value={form.receiver_email} onChange={handleChange}
+                  onBlur={() => handleEmailBlur('receiver_email')}
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors ${emailErrors.receiver_email ? 'border-red-400' : 'border-gray-300'}`} />
+                {emailErrors.receiver_email && <p className="text-red-500 text-xs mt-1">{emailErrors.receiver_email}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Phone <span className="text-gray-400 font-normal">(optional)</span></label>
+                <input name="receiver_phone" type="tel" value={form.receiver_phone} onChange={handleChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+              </div>
             </div>
           </div>
 
