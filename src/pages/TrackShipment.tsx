@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, MapPin, Package, Truck, CheckCircle, Clock, Plane, Ship, AlertTriangle } from 'lucide-react';
+import { Search, MapPin, Package, Truck, CheckCircle, Clock, Plane, Ship, AlertTriangle, Mail, Phone } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { geocodeLocation } from '../lib/geocoding';
 import L from 'leaflet';
@@ -12,9 +12,11 @@ interface ShipmentResult {
   sender_name: string;
   sender_email: string | null;
   sender_phone: string | null;
+  sender_address: string | null;
   receiver_name: string;
   receiver_email: string | null;
   receiver_phone: string | null;
+  receiver_address: string | null;
   weight: number;
   transport_type: string;
   status: string;
@@ -532,10 +534,22 @@ export default function TrackShipment() {
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Sender</p>
                       <p className="text-gray-900 font-semibold text-sm">{result.sender_name}</p>
                       {result.sender_email?.trim() && (
-                        <a href={`mailto:${result.sender_email}`} className="text-xs text-brand-orange hover:underline break-all">{result.sender_email}</a>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <Mail className="h-4 w-4 text-brand-orange opacity-80 flex-shrink-0" />
+                          <a href={`mailto:${result.sender_email}`} className="text-xs text-brand-orange hover:underline break-all">{result.sender_email}</a>
+                        </div>
                       )}
                       {result.sender_phone?.trim() && (
-                        <a href={`tel:${result.sender_phone}`} className="block text-xs text-gray-500 hover:underline mt-0.5">{result.sender_phone}</a>
+                        <div className="flex items-center gap-1.5 mt-1.5">
+                          <Phone className="h-4 w-4 text-brand-orange opacity-80 flex-shrink-0" />
+                          <a href={`tel:${result.sender_phone}`} className="text-xs text-gray-500 hover:underline">{result.sender_phone}</a>
+                        </div>
+                      )}
+                      {result.sender_address?.trim() && (
+                        <div className="flex items-start gap-1.5 mt-1.5">
+                          <MapPin className="h-4 w-4 text-brand-orange opacity-80 flex-shrink-0 mt-0.5" />
+                          <p className="text-xs text-gray-500 break-words whitespace-pre-line">{result.sender_address}</p>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -547,10 +561,22 @@ export default function TrackShipment() {
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Receiver</p>
                       <p className="text-gray-900 font-semibold text-sm">{result.receiver_name}</p>
                       {result.receiver_email?.trim() && (
-                        <a href={`mailto:${result.receiver_email}`} className="text-xs text-brand-orange hover:underline break-all">{result.receiver_email}</a>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <Mail className="h-4 w-4 text-brand-orange opacity-80 flex-shrink-0" />
+                          <a href={`mailto:${result.receiver_email}`} className="text-xs text-brand-orange hover:underline break-all">{result.receiver_email}</a>
+                        </div>
                       )}
                       {result.receiver_phone?.trim() && (
-                        <a href={`tel:${result.receiver_phone}`} className="block text-xs text-gray-500 hover:underline mt-0.5">{result.receiver_phone}</a>
+                        <div className="flex items-center gap-1.5 mt-1.5">
+                          <Phone className="h-4 w-4 text-brand-orange opacity-80 flex-shrink-0" />
+                          <a href={`tel:${result.receiver_phone}`} className="text-xs text-gray-500 hover:underline">{result.receiver_phone}</a>
+                        </div>
+                      )}
+                      {result.receiver_address?.trim() && (
+                        <div className="flex items-start gap-1.5 mt-1.5">
+                          <MapPin className="h-4 w-4 text-brand-orange opacity-80 flex-shrink-0 mt-0.5" />
+                          <p className="text-xs text-gray-500 break-words whitespace-pre-line">{result.receiver_address}</p>
+                        </div>
                       )}
                     </div>
                   </div>

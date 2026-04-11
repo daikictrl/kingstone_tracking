@@ -9,9 +9,11 @@ interface Shipment {
   sender_name: string;
   sender_email: string | null;
   sender_phone: string | null;
+  sender_address: string | null;
   receiver_name: string;
   receiver_email: string | null;
   receiver_phone: string | null;
+  receiver_address: string | null;
   weight: number;
   transport_type: string;
   status: string;
@@ -42,9 +44,11 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
     sender_name: '',
     sender_email: '',
     sender_phone: '',
+    sender_address: '',
     receiver_name: '',
     receiver_email: '',
     receiver_phone: '',
+    receiver_address: '',
     weight: '',
     transport_type: 'Air',
     status: 'Pending',
@@ -60,9 +64,11 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
         sender_name: shipment.sender_name || '',
         sender_email: shipment.sender_email || '',
         sender_phone: shipment.sender_phone || '',
+        sender_address: shipment.sender_address || '',
         receiver_name: shipment.receiver_name || '',
         receiver_email: shipment.receiver_email || '',
         receiver_phone: shipment.receiver_phone || '',
+        receiver_address: shipment.receiver_address || '',
         weight: shipment.weight?.toString() || '',
         transport_type: shipment.transport_type || 'Air',
         status: shipment.status || 'Pending',
@@ -86,7 +92,7 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -102,9 +108,11 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
           sender_name: form.sender_name,
           sender_email: form.sender_email.trim() || null,
           sender_phone: form.sender_phone.trim() || null,
+          sender_address: form.sender_address.trim() || null,
           receiver_name: form.receiver_name,
           receiver_email: form.receiver_email.trim() || null,
           receiver_phone: form.receiver_phone.trim() || null,
+          receiver_address: form.receiver_address.trim() || null,
           weight: form.weight ? parseFloat(form.weight) : null,
           transport_type: form.transport_type,
           status: form.status,
@@ -184,6 +192,11 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
                 <input name="sender_phone" type="tel" value={form.sender_phone} onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
               </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Sender Address <span className="text-gray-400 font-normal">(optional)</span></label>
+                <textarea name="sender_address" value={form.sender_address} onChange={handleChange} rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors resize-none" />
+              </div>
             </div>
           </div>
 
@@ -207,6 +220,11 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Phone <span className="text-gray-400 font-normal">(optional)</span></label>
                 <input name="receiver_phone" type="tel" value={form.receiver_phone} onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Address <span className="text-gray-400 font-normal">(optional)</span></label>
+                <textarea name="receiver_address" value={form.receiver_address} onChange={handleChange} rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors resize-none" />
               </div>
             </div>
           </div>

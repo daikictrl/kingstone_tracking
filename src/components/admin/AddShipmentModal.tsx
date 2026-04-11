@@ -20,9 +20,11 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
     sender_name: '',
     sender_email: '',
     sender_phone: '',
+    sender_address: '',
     receiver_name: '',
     receiver_email: '',
     receiver_phone: '',
+    receiver_address: '',
     weight: '',
     transport_type: 'Air',
     status: 'Pending',
@@ -37,8 +39,8 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
   useEffect(() => {
     if (!isOpen) {
       setForm({
-        sender_name: '', sender_email: '', sender_phone: '',
-        receiver_name: '', receiver_email: '', receiver_phone: '',
+        sender_name: '', sender_email: '', sender_phone: '', sender_address: '',
+        receiver_name: '', receiver_email: '', receiver_phone: '', receiver_address: '',
         weight: '', transport_type: 'Air',
         status: 'Pending', origin_city: '', origin_country: '', destination_city: '',
         destination_country: '', current_city: '', current_country: '',
@@ -59,7 +61,7 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (e.target.name === 'current_city' || e.target.name === 'current_country') {
       setGeoError('');
@@ -90,9 +92,11 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
         sender_name: form.sender_name,
         sender_email: form.sender_email.trim() || null,
         sender_phone: form.sender_phone.trim() || null,
+        sender_address: form.sender_address.trim() || null,
         receiver_name: form.receiver_name,
         receiver_email: form.receiver_email.trim() || null,
         receiver_phone: form.receiver_phone.trim() || null,
+        receiver_address: form.receiver_address.trim() || null,
         weight: form.weight ? parseFloat(form.weight) : null,
         transport_type: form.transport_type,
         status: form.status,
@@ -159,6 +163,11 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
                 <input name="sender_phone" type="tel" value={form.sender_phone} onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
               </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Sender Address <span className="text-gray-400 font-normal">(optional)</span></label>
+                <textarea name="sender_address" value={form.sender_address} onChange={handleChange} rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors resize-none" />
+              </div>
             </div>
           </div>
 
@@ -182,6 +191,11 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
                 <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Phone <span className="text-gray-400 font-normal">(optional)</span></label>
                 <input name="receiver_phone" type="tel" value={form.receiver_phone} onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Receiver Address <span className="text-gray-400 font-normal">(optional)</span></label>
+                <textarea name="receiver_address" value={form.receiver_address} onChange={handleChange} rows={3}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] outline-none text-sm transition-colors resize-none" />
               </div>
             </div>
           </div>
