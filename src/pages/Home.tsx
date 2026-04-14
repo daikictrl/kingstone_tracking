@@ -24,7 +24,7 @@ export default function Home() {
               GLOBAL LOGISTICS & SUPPLY CHAIN
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-             US Prime Delivery  <br />
+             Swift Global Logistics  <br />
               <span className="text-brand-orange">Cargo Company</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl leading-relaxed">
@@ -274,13 +274,13 @@ export default function Home() {
             
             <div>
               <div className="inline-block px-4 py-2 bg-blue-50 rounded-full text-[#003380] font-bold tracking-wider text-sm mb-6">
-                ABOUT Us Prime Delivery
+                ABOUT Swift Global Logistics
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-blue mb-6 leading-tight">
                 Delivering Excellence Across Borders
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Us Prime Delivery is a premier global logistics provider, offering end-to-end supply chain solutions. With a vast network of partners and state-of-the-art tracking technology, we ensure your cargo is handled with the utmost care.
+                Swift Global Logistics is a premier global logistics provider, offering end-to-end supply chain solutions. With a vast network of partners and state-of-the-art tracking technology, we ensure your cargo is handled with the utmost care.
               </p>
               <p className="text-gray-600 text-lg mb-10 leading-relaxed">
                 Our commitment to reliability, transparency, and customer satisfaction has made us the trusted partner for thousands of businesses worldwide.
@@ -334,7 +334,7 @@ export default function Home() {
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-brand-orange text-brand-orange" />)}
               </div>
-              <p className="text-gray-700 italic mb-8 relative z-10 leading-relaxed">"US Prime Delivery has completely transformed our supply chain. Their real-time tracking and dedicated support team make international shipping a breeze."</p>
+              <p className="text-gray-700 italic mb-8 relative z-10 leading-relaxed">"Swift Global Logistics has completely transformed our supply chain. Their real-time tracking and dedicated support team make international shipping a breeze."</p>
               <div className="flex items-center gap-4 border-t border-gray-100 pt-6">
                 <div className="w-12 h-12 bg-[#003380] rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">S</div>
                 <div>
