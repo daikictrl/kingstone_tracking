@@ -51,7 +51,7 @@ export default function AdminLogin() {
             <Globe className="h-14 w-14" strokeWidth={1.2} />
             <Plane className="h-6 w-6 absolute -top-1 -right-2 transform rotate-45 fill-current" />
           </div>
-          <h2 className="text-white text-2xl font-bold tracking-wider">Us Prime Deliveries</h2>
+          <h2 className="text-white text-2xl font-bold tracking-wider">Swift Global Logistics</h2>
           <p className="text-gray-400 text-sm mt-1">Admin Portal</p>
         </div>
 
@@ -128,7 +128,7 @@ export default function AdminLogin() {
         </div>
 
         <p className="text-center text-gray-500 text-xs mt-6">
-          &copy; {new Date().getFullYear()} Us Prime Deliveries. Admin Access Only.
+          &copy; {new Date().getFullYear()} Swift Global Logistics. Admin Access Only.
         </p>
       </div>
     </div>

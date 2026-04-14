@@ -17,7 +17,7 @@ export default function About() {
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            About <span className="text-brand-orange">US Prime Deliveries</span>
+            About <span className="text-brand-orange">Swift Global Logistics</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed">
             We are a leading global logistics provider, dedicated to simplifying complex supply chains and delivering excellence.
@@ -34,7 +34,7 @@ export default function About() {
                 Our Story
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Founded in 1998, US Prime Deliveries began with a simple mission: to provide reliable, transparent, and efficient logistics solutions. Over the decades, we have grown from a small regional carrier into a global powerhouse in freight forwarding and supply chain management.
+                Founded in 1998, Swift Global Logistics began with a simple mission: to provide reliable, transparent, and efficient logistics solutions. Over the decades, we have grown from a small regional carrier into a global powerhouse in freight forwarding and supply chain management.
               </p>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 Today, we operate across 120+ countries, managing millions of shipments annually. Our success is built on a foundation of trust, innovation, and a relentless commitment to customer satisfaction.
@@ -126,7 +126,7 @@ export default function About() {
             
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-8">
-                Why Choose US Prime Deliveries?
+                Why Choose Swift Global Logistics?
               </h2>
               
               <div className="space-y-8">

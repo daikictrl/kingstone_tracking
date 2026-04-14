@@ -59,7 +59,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-white/10 pt-8 text-center">
           <p className="text-gray-300 text-[13px]">
-            Copyright &copy; 2026 Us Prime Deliveries.
+            Copyright &copy; 2026 Swift Global Logistics.
           </p>
         </div>
       </div>
