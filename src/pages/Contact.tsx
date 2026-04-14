@@ -118,9 +118,21 @@ export default function Contact() {
                       Email
                     </h3>
                     <p className="text-gray-600 leading-relaxed break-all">
-                      General Inquiries: <a href="mailto:supportusprimedeliveries@gmail.com" className="text-brand-blue hover:text-brand-orange hover:underline transition-colors">supportusprimedeliveries@gmail.com</a>
+                      General Inquiries:{" "}
+                      <a
+                        href="mailto:supportusprimedeliveries@gmail.com"
+                        className="text-brand-blue hover:text-brand-orange hover:underline transition-colors"
+                      >
+                        supportusprimedeliveries@gmail.com
+                      </a>
                       <br />
-                      Support: <a href="mailto:operationsusprimedeliveries@gmail.com" className="text-brand-blue hover:text-brand-orange hover:underline transition-colors">operationsusprimedeliveries@gmail.com</a>
+                      Support:{" "}
+                      <a
+                        href="mailto:operationsusprimedeliveries@gmail.com"
+                        className="text-brand-blue hover:text-brand-orange hover:underline transition-colors"
+                      >
+                        operationsusprimedeliveries@gmail.com
+                      </a>
                     </p>
                   </div>
                 </div>
