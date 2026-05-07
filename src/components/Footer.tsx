@@ -22,13 +22,8 @@ export default function Footer() {
               <h3 className="text-2xl font-bold mb-5 tracking-wide">CONTACT</h3>
               <div className="space-y-3 mb-6">
                 <p className="text-[15px]">
-                  <a href="mailto:supportusprimedeliveries@gmail.com" className="text-gray-100 hover:text-white hover:underline transition-colors">
-                    supportusprimedeliveries@gmail.com
-                  </a>
-                </p>
-                <p className="text-[15px]">
-                  <a href="mailto:operationsusprimedeliveries@gmail.com" className="text-gray-100 hover:text-white hover:underline transition-colors">
-                    operationsusprimedeliveries@gmail.com
+                  <a href="mailto:swiftglobalsend@gmail.com" className="text-gray-100 hover:text-white hover:underline transition-colors">
+                    swiftglobalsend@gmail.com
                   </a>
                 </p>
               </div>

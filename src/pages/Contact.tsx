@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Send, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
-const SUPPORT_EMAIL = "supportusprimedeliveries@gmail.com";
+const SUPPORT_EMAIL = "swiftglobalsend@gmail.com";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -101,7 +101,7 @@ export default function Contact() {
                     <p className="text-gray-600 leading-relaxed break-all">
                       General Inquiries:{" "}
                       <a
-                        href="mailto:supportusprimedeliveries@gmail.com"
+                        href="mailto:swiftglobalsend@gmail.com"
                         className="text-brand-blue hover:text-brand-orange hover:underline transition-colors"
                       >
                         swiftglobalsend@gmail.com
