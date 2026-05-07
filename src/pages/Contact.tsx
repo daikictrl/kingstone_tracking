@@ -84,27 +84,8 @@ export default function Contact() {
                       Global Headquarters
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
-                      123 Logistics Way, Suite 400
+                      International
                       <br />
-                      New York, NY 10001
-                      <br />
-                      United States
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-6">
-                  <div className="bg-white p-4 rounded-full shadow-sm">
-                    <Phone className="h-8 w-8 text-brand-orange" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-brand-blue mb-2">
-                      Phone
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Main: +1 (517) 280-2134
-                      <br />
-                      Support: +1 (517) 232-4753
                     </p>
                   </div>
                 </div>
@@ -123,15 +104,7 @@ export default function Contact() {
                         href="mailto:supportusprimedeliveries@gmail.com"
                         className="text-brand-blue hover:text-brand-orange hover:underline transition-colors"
                       >
-                        supportusprimedeliveries@gmail.com
-                      </a>
-                      <br />
-                      Support:{" "}
-                      <a
-                        href="mailto:operationsusprimedeliveries@gmail.com"
-                        className="text-brand-blue hover:text-brand-orange hover:underline transition-colors"
-                      >
-                        operationsusprimedeliveries@gmail.com
+                        swiftglobalsend@gmail.com
                       </a>
                     </p>
                   </div>
