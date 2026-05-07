@@ -81,7 +81,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-brand-blue mb-2">
-                      Locations
+                      Location
                     </h3>
                     <p className="text-gray-600 leading-relaxed">
                       International
