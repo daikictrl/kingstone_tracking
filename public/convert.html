@@ -42,6 +42,26 @@
       document.getElementById('jpeg-base64').value = jpegBase64;
       document.getElementById('png-base64').value = pngBase64;
       document.getElementById('status').innerText = 'ready';
+
+      // Send to local server
+      fetch('http://localhost:3002/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          jpeg: jpegBase64,
+          png: pngBase64
+        })
+      })
+      .then(r => r.json())
+      .then(data => {
+        console.log('Successfully saved to local server:', data);
+        document.getElementById('status').innerText = 'saved';
+      })
+      .catch(err => {
+        console.error('Error posting to local server:', err);
+      });
     };
     img.src = svgUrl;
   </script>
