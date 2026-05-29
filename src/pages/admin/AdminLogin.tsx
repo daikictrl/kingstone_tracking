@@ -2,6 +2,7 @@ import { useState, FormEvent, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Globe, Plane, Eye, EyeOff } from 'lucide-react';
+import { getFriendlyErrorMessage } from '../../lib/supabase';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -25,12 +26,12 @@ export default function AdminLogin() {
     try {
       const { error: signInError } = await signIn(email, password);
       if (signInError) {
-        setError('Invalid email or password');
+        setError(getFriendlyErrorMessage(signInError, 'Invalid email or password'));
       } else {
         navigate('/admin/dashboard');
       }
-    } catch {
-      setError('Connection failed. Please try again.');
+    } catch (err) {
+      setError(getFriendlyErrorMessage(err, 'Connection failed. Please try again.'));
     } finally {
       setLoading(false);
     }

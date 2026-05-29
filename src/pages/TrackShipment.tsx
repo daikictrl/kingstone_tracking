@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Package, Truck, CheckCircle, Clock, Plane, Ship, AlertTriangle, Mail, Phone } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { supabase, getFriendlyErrorMessage } from '../lib/supabase';
 import { geocodeLocation } from '../lib/geocoding';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -154,7 +154,7 @@ export default function TrackShipment() {
       setResult(shipment);
       setHistory(historyData || []);
     } catch (err: any) {
-      setError(err.message || 'Connection failed. Please try again.');
+      setError(getFriendlyErrorMessage(err, 'Connection failed. Please try again.'));
     } finally {
       setIsSearching(false);
     }

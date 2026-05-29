@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Package, CreditCard, Truck, Globe, ShieldCheck, Plane, Ship, Train, Warehouse, MapPin, Star, Quote } from 'lucide-react';
+import { ArrowRight, Package, CreditCard, Truck, Globe, ShieldCheck, Plane, Ship, Train, Warehouse, MapPin, Star, Quote, PawPrint } from 'lucide-react';
 import AnimatedCounter from '../components/AnimatedCounter';
 
 export default function Home() {
@@ -233,19 +233,19 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Last Mile Delivery */}
+            {/* Pet Shipping & Relocation */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 group">
               <div className="relative h-64 overflow-hidden">
-                <img src="/pet-image.png" alt="Last Mile Delivery" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src="/pet-image2.jpg" alt="Pet Shipping & Relocation" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-[#003380]/20 group-hover:bg-transparent transition-colors duration-300"></div>
                 <div className="absolute top-4 right-4 bg-white p-3 rounded-2xl shadow-lg transform group-hover:-translate-y-1 transition-transform">
-                  <MapPin className="h-6 w-6 text-brand-orange" />
+                  <PawPrint className="h-6 w-6 text-brand-orange" />
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-brand-blue mb-3">Last Mile Delivery</h3>
-                <p className="text-gray-600 mb-6 line-clamp-3">Swift and accurate final-step delivery directly to your customers' doors, ensuring high satisfaction rates.</p>
-                <Link to="/services" className="text-[#003380] font-bold hover:text-brand-orange transition-colors inline-flex items-center">
+                <h3 className="text-2xl font-bold text-brand-blue mb-3">Pet Shipping & Relocation</h3>
+                <p className="text-gray-600 mb-6 line-clamp-3">Safe, comfortable, and reliable door-to-door relocation for your pets. Fully certified climate-controlled transit with expert veterinary care.</p>
+                <Link to="/services#pet-shipping" className="text-[#003380] font-bold hover:text-brand-orange transition-colors inline-flex items-center">
                   Learn more <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </div>

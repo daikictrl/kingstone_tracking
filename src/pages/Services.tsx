@@ -1,6 +1,21 @@
-import { Plane, Ship, Truck, Package, ShieldCheck, Clock } from 'lucide-react';
+import { Plane, Ship, Truck, Package, ShieldCheck, Clock, PawPrint, Heart } from 'lucide-react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function Services() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.replace('#', ''));
+      if (element) {
+        const timer = setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [hash]);
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -137,6 +152,78 @@ export default function Services() {
                 className="rounded-xl shadow-xl w-full object-cover h-[400px]"
                 referrerPolicy="no-referrer"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pet Shipping Section */}
+      <section id="pet-shipping" className="py-24 bg-brand-light">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column: 2x2 Staggered Grid Gallery of Pets */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="overflow-hidden rounded-2xl shadow-md group">
+                <img
+                  src="/pet-image2.jpg"
+                  alt="Happy dog"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md group mt-6">
+                <img
+                  src="/pet-image3.jpg"
+                  alt="Cat looking alert"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md group -mt-6">
+                <img
+                  src="/pet-image4.jpg"
+                  alt="Golden retriever"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md group">
+                <img
+                  src="/pet-image5.jpg"
+                  alt="Cat resting"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+
+            {/* Right Column: Content and Features */}
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-6 flex items-center gap-4">
+                <PawPrint className="h-10 w-10 text-brand-orange" />
+                Pet Shipping & Relocation
+              </h2>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                We understand that your pets are cherished family members. Our specialized pet relocation services provide a safe, stress-free, and comfortable journey for your dogs, cats, and other animal companions, whether cross-country or across the globe.
+              </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center gap-3">
+                  <ShieldCheck className="h-6 w-6 text-brand-orange flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">IATA-compliant customized travel crates</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Heart className="h-6 w-6 text-brand-orange flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Veterinary-approved climate-controlled cabins</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Clock className="h-6 w-6 text-brand-orange flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Document clearances and customs handling</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Package className="h-6 w-6 text-brand-orange flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Constant updates and real-time tracking</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

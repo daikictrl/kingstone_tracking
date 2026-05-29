@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase, getFriendlyErrorMessage } from '../../lib/supabase';
 import { useToast } from './Toast';
 
 interface Shipment {
@@ -129,7 +129,7 @@ export default function EditShipmentModal({ isOpen, shipment, onClose, onSuccess
       onSuccess();
       onClose();
     } catch (error: any) {
-      showToast(error.message || 'Failed to update shipment', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to update shipment'), 'error');
     } finally {
       setLoading(false);
     }

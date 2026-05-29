@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import { X } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase, getFriendlyErrorMessage } from '../../lib/supabase';
 import { geocodeLocation } from '../../lib/geocoding';
 import { useToast } from './Toast';
 
@@ -116,7 +116,7 @@ export default function AddShipmentModal({ isOpen, onClose, onSuccess }: AddShip
       onSuccess();
       onClose();
     } catch (error: any) {
-      showToast(error.message || 'Failed to create shipment', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to create shipment'), 'error');
     } finally {
       setLoading(false);
     }

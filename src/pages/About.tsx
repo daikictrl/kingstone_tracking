@@ -1,4 +1,4 @@
-import { ShieldCheck, Target, Users, Globe, Award, Clock } from 'lucide-react';
+import { ShieldCheck, Target, Users, Globe, Award, Clock, PawPrint } from 'lucide-react';
 
 export default function About() {
   return (
@@ -165,6 +165,66 @@ export default function About() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pet Relocation Division Section */}
+      <section className="py-24 bg-brand-light">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Content */}
+            <div>
+              <div className="inline-block px-4 py-2 bg-blue-50 rounded-full text-[#003380] font-bold tracking-wider text-sm mb-6">
+                OUR PET RELOCATION DIVISION
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-6 flex items-center gap-3">
+                <PawPrint className="h-8 w-8 text-brand-orange" />
+                Safe Journeys for Your Beloved Companions
+              </h2>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                As part of our commitment to offering comprehensive logistics solutions, Swift Global Logistics operates a specialized Pet Relocation division. We understand that pets are cherished family members, and we treat their journeys with the same care and respect as our own.
+              </p>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                Our certified pet handlers coordinate every detail, from choosing IATA-approved travel containers to arranging temperature-controlled transport and managing veterinary clearance documents. Whether moving across the country or internationally, we ensure your pet enjoys a safe, stress-free relocation.
+              </p>
+            </div>
+            
+            {/* Right: Pet Gallery Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="overflow-hidden rounded-2xl shadow-md group">
+                <img
+                  src="/pet-image2.jpg"
+                  alt="Pet Transport Rabbit"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md group mt-6">
+                <img
+                  src="/pet-image3.jpg"
+                  alt="Pet Relocation Dog"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md group -mt-6">
+                <img
+                  src="/pet-image4.jpg"
+                  alt="Puppies in transit"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md group">
+                <img
+                  src="/pet-image5.jpg"
+                  alt="Cats in carrier box"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </div>
           </div>

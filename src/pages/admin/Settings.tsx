@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Save } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase, getFriendlyErrorMessage } from '../../lib/supabase';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../components/admin/Toast';
 
@@ -31,7 +31,7 @@ export default function Settings() {
       
       showToast('Confirmation emails have been sent to both your old and new email addresses. Please verify to complete the update.', 'success');
     } catch (error: any) {
-      showToast(error.message || 'Failed to update email.', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to update email.'), 'error');
     } finally {
       setEmailLoading(false);
     }
@@ -61,7 +61,7 @@ export default function Settings() {
       showToast('Password updated successfully.', 'success');
       setPasswordForm({ newPassword: '', confirmPassword: '' });
     } catch (error: any) {
-      showToast(error.message || 'Failed to update password.', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to update password.'), 'error');
     } finally {
       setPasswordLoading(false);
     }

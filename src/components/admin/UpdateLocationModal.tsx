@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useEffect } from 'react';
 import { X, MapPin } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase, getFriendlyErrorMessage } from '../../lib/supabase';
 import { geocodeLocation } from '../../lib/geocoding';
 import { useToast } from './Toast';
 
@@ -85,7 +85,7 @@ export default function UpdateLocationModal({ isOpen, shipment, onClose, onSucce
       onSuccess();
       onClose();
     } catch (error: any) {
-      showToast(error.message || 'Failed to update location', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to update location'), 'error');
     } finally {
       setLoading(false);
     }

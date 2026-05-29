@@ -11,3 +11,18 @@ export const supabase = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
   supabaseAnonKey || 'placeholder-key'
 );
+
+export const getFriendlyErrorMessage = (error: any, fallbackMessage: string = 'An unexpected error occurred'): string => {
+  if (!error) return fallbackMessage;
+  const msg = typeof error === 'string' ? error : (error.message || '');
+  if (
+    !navigator.onLine || 
+    msg.includes('Failed to fetch') || 
+    msg.includes('network') || 
+    msg.includes('TypeError') ||
+    msg.includes('fetch')
+  ) {
+    return 'Connection error: Please check your internet connection and try again.';
+  }
+  return msg || fallbackMessage;
+};

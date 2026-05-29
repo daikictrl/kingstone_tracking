@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Search, Filter, Edit, MapPin, Trash2, Plus, ChevronLeft, ChevronRight, Package } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { supabase, getFriendlyErrorMessage } from '../../lib/supabase';
 import { useToast } from '../../components/admin/Toast';
 import AddShipmentModal from '../../components/admin/AddShipmentModal';
 import EditShipmentModal from '../../components/admin/EditShipmentModal';
@@ -88,7 +88,7 @@ export default function Shipments() {
       setShipments(data || []);
       setTotalCount(count ?? 0);
     } catch (error: any) {
-      showToast(error.message || 'Failed to load shipments', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to load shipments'), 'error');
     } finally {
       setLoading(false);
     }
@@ -150,7 +150,7 @@ export default function Shipments() {
       setDeleteConfirm(null);
       fetchShipments();
     } catch (error: any) {
-      showToast(error.message || 'Failed to delete shipment', 'error');
+      showToast(getFriendlyErrorMessage(error, 'Failed to delete shipment'), 'error');
     } finally {
       setDeleting(false);
     }
