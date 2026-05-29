@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import { Package, Truck, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Package, Truck, CheckCircle, AlertTriangle, Clock } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 interface Stats {
   total: number;
+  pending: number;
   inTransit: number;
   delivered: number;
   delayed: number;
 }
 
 export default function Dashboard() {
-  const [stats, setStats] = useState<Stats>({ total: 0, inTransit: 0, delivered: 0, delayed: 0 });
+  const [stats, setStats] = useState<Stats>({ total: 0, pending: 0, inTransit: 0, delivered: 0, delayed: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function Dashboard() {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'shipments' }, (payload) => {
          setStats(prev => {
            const newStats = { ...prev, total: prev.total + 1 };
+           if (payload.new.status === 'Pending') newStats.pending += 1;
            if (payload.new.status === 'In Transit') newStats.inTransit += 1;
            if (payload.new.status === 'Delivered') newStats.delivered += 1;
            if (payload.new.status === 'Delayed') newStats.delayed += 1;
@@ -50,6 +52,11 @@ export default function Dashboard() {
         .from('shipments')
         .select('*', { count: 'exact', head: true });
 
+      const { count: pending } = await supabase
+        .from('shipments')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'Pending');
+
       const { count: inTransit } = await supabase
         .from('shipments')
         .select('*', { count: 'exact', head: true })
@@ -67,6 +74,7 @@ export default function Dashboard() {
 
       setStats({
         total: total ?? 0,
+        pending: pending ?? 0,
         inTransit: inTransit ?? 0,
         delivered: delivered ?? 0,
         delayed: delayed ?? 0,
@@ -85,6 +93,15 @@ export default function Dashboard() {
       icon: Package,
       bgColor: 'bg-[#0A1F44]',
       iconBg: 'bg-white/10',
+      textColor: 'text-white',
+      valueColor: 'text-white',
+    },
+    {
+      title: 'Pending',
+      value: stats.pending,
+      icon: Clock,
+      bgColor: 'bg-gradient-to-br from-gray-500 to-gray-600',
+      iconBg: 'bg-white/20',
       textColor: 'text-white',
       valueColor: 'text-white',
     },
@@ -119,7 +136,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
         {cards.map((card) => (
           <div
             key={card.title}
