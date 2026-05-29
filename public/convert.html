@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favicon Converter</title>
+</head>
+<body>
+  <h1>Converter</h1>
+  <canvas id="canvas" width="256" height="256" style="border: 1px solid #ccc;"></canvas>
+  <div>
+    <h3>JPEG Base64:</h3>
+    <textarea id="jpeg-base64" rows="10" cols="80"></textarea>
+  </div>
+  <div>
+    <h3>PNG Base64:</h3>
+    <textarea id="png-base64" rows="10" cols="80"></textarea>
+  </div>
+  <div id="status">pending</div>
+
+  <script>
+    const svgUrl = '/favicon.svg';
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    const img = new Image();
+    img.onload = function() {
+      // Clear canvas
+      ctx.fillStyle = '#0A1F44';
+      ctx.fillRect(0, 0, 256, 256);
+      
+      // Draw SVG onto canvas
+      ctx.drawImage(img, 0, 0, 256, 256);
+      
+      // Get base64 data URL
+      const jpegDataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      const pngDataUrl = canvas.toDataURL('image/png');
+      
+      // Extract base64 part
+      const jpegBase64 = jpegDataUrl.split(',')[1];
+      const pngBase64 = pngDataUrl.split(',')[1];
+      
+      document.getElementById('jpeg-base64').value = jpegBase64;
+      document.getElementById('png-base64').value = pngBase64;
+      document.getElementById('status').innerText = 'ready';
+    };
+    img.src = svgUrl;
+  </script>
+</body>
+</html>
