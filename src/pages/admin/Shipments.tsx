@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Search, Filter, Edit, MapPin, Trash2, Plus, ChevronLeft, ChevronRight, Package } from 'lucide-react';
 import { supabase, getFriendlyErrorMessage } from '../../lib/supabase';
@@ -48,6 +48,12 @@ export default function Shipments() {
   const [page, setPage] = useState(0);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
+
+  // Keep shipments reference up-to-date to avoid stale closures in realtime handlers
+  const shipmentsRef = useRef<Shipment[]>([]);
+  useEffect(() => {
+    shipmentsRef.current = shipments;
+  }, [shipments]);
 
   // Modal state
   const [showAddModal, setShowAddModal] = useState(false);
@@ -102,11 +108,15 @@ export default function Shipments() {
   useEffect(() => {
     const channel = supabase.channel('admin-shipments-global')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'shipments' }, (payload) => {
-         setShipments(prev => {
-           if (statusFilter && payload.new.status !== statusFilter) return prev;
-           return [payload.new as Shipment, ...prev];
-         });
-         setTotalCount(prev => prev + 1);
+         const newShipment = payload.new as Shipment;
+         if (statusFilter && newShipment.status !== statusFilter) return;
+         
+         // Prevent duplicate listings if the shipment was already added or fetched
+         const isDuplicate = shipmentsRef.current.some(s => s.id === newShipment.id);
+         if (!isDuplicate) {
+           setShipments(prev => [newShipment, ...prev]);
+           setTotalCount(prev => prev + 1);
+         }
       })
       .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'shipments' }, (payload) => {
          setShipments(prev => {
